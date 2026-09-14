@@ -50,10 +50,8 @@ st.markdown(
 # 2. Title and Description
 st.title("📊 Brazilian E-Commerce Sales Dashboard")
 st.markdown(
-    """
-    An interactive executive analytics dashboard exploring orders, revenue trajectories, regional performance,
-    and customer repeat patterns across Brazil from the **Olist Brazilian E-Commerce dataset**.
-    """
+    "An interactive dashboard exploring orders, revenue trends, regional performance, "
+    "and customer repeat patterns from the Olist Brazilian E-Commerce dataset."
 )
 
 
@@ -253,3 +251,18 @@ else:
             legend=dict(orientation="h", yanchor="bottom", y=-0.1, xanchor="center", x=0.5),
         )
         st.plotly_chart(fig_seg)
+
+        # Dynamic caption explaining revenue share vs customer count
+        total_customers = segment_df["customer_count"].sum()
+        total_segment_revenue = segment_df["revenue"].sum()
+        repeat_row = segment_df[segment_df["segment"] == "repeat"]
+        repeat_cust_cnt = int(repeat_row["customer_count"].values[0]) if not repeat_row.empty else 0
+        repeat_rev_val = float(repeat_row["revenue"].values[0]) if not repeat_row.empty else 0.0
+
+        repeat_cust_pct = (repeat_cust_cnt / total_customers * 100) if total_customers > 0 else 0.0
+        repeat_rev_pct = (repeat_rev_val / total_segment_revenue * 100) if total_segment_revenue > 0 else 0.0
+
+        st.caption(
+            f"Shows revenue share, not customer count. Repeat customers represent ~{repeat_cust_pct:.1f}% "
+            f"of customers but contribute ~{repeat_rev_pct:.1f}% of revenue."
+        )
