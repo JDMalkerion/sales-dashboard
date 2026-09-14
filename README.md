@@ -80,10 +80,3 @@ Based on the verified analysis of delivered orders across the full dataset:
 
 This project uses the [Olist Brazilian E-Commerce Public Dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) hosted on Kaggle. It contains real, anonymized commercial data covering approximately 100,000 orders placed between 2016 and 2018 across multiple marketplaces in Brazil.
 
----
-
-*Not currently deployed live — see "How to Run Locally" above.*
-
----
-
-*Portfolio Project #2 — follows a completed SQL + Python sales analysis project (Project #1).*
